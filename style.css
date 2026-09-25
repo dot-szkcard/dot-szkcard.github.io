@@ -30,22 +30,6 @@
     scroll-behavior: smooth; /* スムーズスクロール */
 }
 
-/* パソコンやタブレットでのサイズ */
-.hero img {
-  width: 250px; 
-  height: auto;
-  display: block;
-  margin: 0 auto 20px;
-}
-
-/* 画面横幅が768px以下（スマホなど）のときのサイズ */
-@media screen and (max-width: 768px) {
-  .hero img {
-    width: 150px; /* スマホでは150pxに縮小 */
-  }
-}
-
-
 body {
         margin: 0;
         /* 背景は画像のみ指定（背景色は個別ページで必要なら上書きしてください） */
@@ -226,12 +210,22 @@ label, .form-group label, .footer-social a {
     margin: 0 auto;
 }
 
+/* ↓現在あるコード（パソコン用のサイズは260pxのまま維持） */
 .hero img {
     max-width: 260px;
     width: 100%;
     image-rendering: pixelated;
     margin-bottom: 20px;
 }
+
+/* 📱 ここから下を追加：画面の横幅が768px以下のとき（スマホ）の設定 */
+@media screen and (max-width: 768px) {
+    .hero img {
+        max-width: 160px; /* ★スマホでのロゴの最大横幅。お好みで数値を調整してください */
+        margin-bottom: 15px; /* スマホ用に下の余白も少しだけ狭く調整 */
+    }
+}
+
 
 .hero h1 {
     font-size: 1.4rem;
