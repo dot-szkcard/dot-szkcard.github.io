@@ -30,6 +30,22 @@
     scroll-behavior: smooth; /* スムーズスクロール */
 }
 
+/* パソコンやタブレットでのサイズ */
+.hero img {
+  width: 250px; 
+  height: auto;
+  display: block;
+  margin: 0 auto 20px;
+}
+
+/* 画面横幅が768px以下（スマホなど）のときのサイズ */
+@media screen and (max-width: 768px) {
+  .hero img {
+    width: 150px; /* スマホでは150pxに縮小 */
+  }
+}
+
+
 body {
         margin: 0;
         /* 背景は画像のみ指定（背景色は個別ページで必要なら上書きしてください） */
