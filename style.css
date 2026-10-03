@@ -1024,22 +1024,56 @@ h3.sub {
 }
 
 /* =========================================================
-   背景をヘッダーとして扱う（スクロールで一緒に流れる）
+   背景をヘッダーとして扱う（スクロールで流れつつ、下端がふわっと消える）
    ---------------------------------------------------------
-   ・背景画像(bg.png)をページ最上部に固定せず、ヘッダー画像のように
-     コンテンツと一緒にスクロールして上へ流れていきます。
-   ・index.html 内のスクリプトが body にインライン指定する背景位置や
-     サイズも上書きするため !important を使っています（HTML/JSは未変更）。
-   ・PC・スマホ両方に適用。ファイル内で後ろに置くことで、
-     上にあるメディアクエリ内の背景指定にも勝ちます。
+   ・背景画像(bg.png)をページ最上部に置き、コンテンツと一緒にスクロールさせます。
+   ・画像の下側をマスクでなだらかに透明にし、漆黒の背景へ溶け込ませます。
+   ・index.html 内のスクリプトが body に背景を直接書き込むため、
+     body 自体の背景は消して ::before に画像を移しています（HTML/JSは未変更）。
+   ・ファイル内で後ろに置くことで、上にあるメディアクエリの指定にも勝ちます。
    ========================================================= */
+:root {
+    --bg-header-height: 110vh;   /* 背景ヘッダーの高さ。大きいほどフェードが長く・ゆっくりになる */
+}
+
 body {
-    background-image: url('bg.png') !important;
-    background-repeat: no-repeat !important;
-    background-position: top center !important;
-    background-size: 100% auto !important;      /* 横幅いっぱい・縦は画像比率のまま */
-    background-attachment: scroll !important;   /* 固定をやめてスクロールに追従 */
-    background-color: var(--bg-color);          /* 画像の下は漆黒 */
+    background: none !important;
+    background-color: transparent !important;   /* 黒地は html 側の背景色が担当 */
+}
+
+body::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: var(--bg-header-height);
+    z-index: -1;
+    pointer-events: none;
+    background-image: url('bg.png');
+    background-repeat: no-repeat;
+    background-position: top center;
+    background-size: cover;
+    image-rendering: pixelated;
+    image-rendering: crisp-edges;
+
+    /* 下に向かって段階的に透明に（段数を増やして境目が出ないようにしています） */
+    -webkit-mask-image: linear-gradient(to bottom,
+        rgba(0,0,0,1) 0%,
+        rgba(0,0,0,1) 30%,
+        rgba(0,0,0,0.85) 45%,
+        rgba(0,0,0,0.6) 60%,
+        rgba(0,0,0,0.3) 75%,
+        rgba(0,0,0,0.1) 90%,
+        rgba(0,0,0,0) 100%);
+    mask-image: linear-gradient(to bottom,
+        rgba(0,0,0,1) 0%,
+        rgba(0,0,0,1) 30%,
+        rgba(0,0,0,0.85) 45%,
+        rgba(0,0,0,0.6) 60%,
+        rgba(0,0,0,0.3) 75%,
+        rgba(0,0,0,0.1) 90%,
+        rgba(0,0,0,0) 100%);
 }
 
 /* スマホ用の固定背景レイヤーは不要になるので非表示 */
