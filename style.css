@@ -235,6 +235,10 @@ label, .form-group label, .footer-social a {
     letter-spacing: 1px;
 }
 
+header.hero h1 {
+    color: #ffffff !important;
+}
+
 .hero .intro-text {
     font-size: 1rem;
     color: var(--text-muted);
@@ -997,4 +1001,3 @@ h3.sub {
 
 /* 道具/役職カードの効果一覧（グローバル版） */
 .effect-grid {
-    display: grid;
