@@ -346,6 +346,14 @@ h2::after {
     color: var(--text-muted);
 }
 
+/* 夜フェーズの「対抗」「奇襲」を少し大きく強調 */
+.rule-step p.rule-term {
+    font-size: 1.15rem;
+    font-weight: bold;
+    color: var(--text-light);
+    margin-top: 10px;
+}
+
 /* --- アイテム＆役職ギャラリー --- */
 .subheading {
     color: var(--primary-red);
