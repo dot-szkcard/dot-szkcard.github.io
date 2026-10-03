@@ -1023,6 +1023,30 @@ h3.sub {
     font-family: var(--font-dotmincho);
 }
 
+/* =========================================================
+   背景をヘッダーとして扱う（スクロールで一緒に流れる）
+   ---------------------------------------------------------
+   ・背景画像(bg.png)をページ最上部に固定せず、ヘッダー画像のように
+     コンテンツと一緒にスクロールして上へ流れていきます。
+   ・index.html 内のスクリプトが body にインライン指定する背景位置や
+     サイズも上書きするため !important を使っています（HTML/JSは未変更）。
+   ・PC・スマホ両方に適用。ファイル内で後ろに置くことで、
+     上にあるメディアクエリ内の背景指定にも勝ちます。
+   ========================================================= */
+body {
+    background-image: url('bg.png') !important;
+    background-repeat: no-repeat !important;
+    background-position: top center !important;
+    background-size: 100% auto !important;      /* 横幅いっぱい・縦は画像比率のまま */
+    background-attachment: scroll !important;   /* 固定をやめてスクロールに追従 */
+    background-color: var(--bg-color);          /* 画像の下は漆黒 */
+}
+
+/* スマホ用の固定背景レイヤーは不要になるので非表示 */
+.fixed-bg {
+    display: none !important;
+}
+
 /* 道具/役職カードの効果一覧（グローバル版） */
 .effect-grid {
     display: grid;
