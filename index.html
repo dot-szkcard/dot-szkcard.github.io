@@ -42,9 +42,6 @@
         </ul>
     </div>
 
-    <!-- ヘッダー背景エリア（スクロールで消える） -->
-    <div class="hero-bg" id="hero-bg"></div>
-
     <!-- ヒーローセクション -->
     <header class="hero" id="about">
         <img src="Dot_logo.png" alt="Dot.">
@@ -103,19 +100,7 @@
             <button type="button" class="item-card tool-card" data-tool="coin" aria-haspopup="dialog"><img src="Coin.png" alt="金貨"><p>金貨</p></button>
             <button type="button" class="item-card tool-card" data-tool="gun" aria-haspopup="dialog"><img src="Gun.png" alt="拳銃"><p>拳銃</p></button>
         </div>
-
-        <!-- 役職 ギャラリー -->
-        <div class="subheading">役職</div>
-        <div class="item-grid">
-            <button type="button" class="item-card role-card" data-tool="citizen" aria-haspopup="dialog"><img src="Citizen.png" alt="市民"><p>市民</p></button>
-            <button type="button" class="item-card role-card" data-tool="noble" aria-haspopup="dialog"><img src="Noble.png" alt="貴族"><p>貴族</p></button>
-            <button type="button" class="item-card role-card" data-tool="slave" aria-haspopup="dialog"><img src="Slave.png" alt="奴隷"><p>奴隷</p></button>
-            <button type="button" class="item-card role-card" data-tool="jester" aria-haspopup="dialog"><img src="Jester.png" alt="道化"><p>道化</p></button>
-        </div>
     </section>
-
-
-
 
     <!-- 道具カード詳細モーダル -->
     <div class="tool-modal" id="tool-modal" aria-hidden="true">
@@ -133,14 +118,10 @@
         </div>
     </div>
 
-    <!-- 役職カードは道具カードと同じモーダル（`tool-modal`）で表示します -->
-
     <!-- 予約セクション -->
     <section id="reserve">
         <h2>ゲームマーケット2026秋 予約フォーム</h2>
         <div class="reserve-box">
-            <!-- Googleフォームへ裏側で送信（画面遷移なし）。回答は元のGoogleフォームの「回答」タブ、
-                 またはメール通知設定（回答タブ→⋮→メール通知を受け取る）で確認できます -->
             <form id="reserve-form"
                   action="https://docs.google.com/forms/u/0/d/e/1FAIpQLSdGf9Y0Hx1iLd9t96xGrSDfWUaqs1Ho54uPQ0w7o0v3PjkaVA/formResponse"
                   method="POST" target="hidden_iframe">
@@ -166,7 +147,6 @@
                 </div>
                 <button type="submit" class="btn-submit" id="reserve-submit-btn">予約を確定する</button>
                 <p id="reserve-status" style="margin-top:15px; text-align:center; font-size:0.9rem; display:none;"></p>
-                <!-- Googleフォームが要求する内部トークン。JSで自動生成して付与します -->
                 <input type="hidden" name="fvv" value="1">
                 <input type="hidden" name="pageHistory" value="0">
                 <input type="hidden" name="fbzx" id="fbzx-field" value="">
@@ -186,47 +166,6 @@
         </div>
     </footer>
 
-    <!-- ハンバーガーメニュー制御用のJavaScript -->
-    <script>
-        // --- ヘッダー背景のパラレックス効果 ---
-        const heroBgElement = document.getElementById('hero-bg');
-        
-        function updateHeroBgParallax() {
-            if (!heroBgElement) return;
-            
-            const scrollY = window.scrollY;
-            // スクロール量の30%だけ移動（パラレックス効果）
-            heroBgElement.style.transform = `translateY(${scrollY * 0.3}px)`;
-        }
-        
-        window.addEventListener('scroll', updateHeroBgParallax);
-
-        // --- 背景のスローパラララックス制御 ---
-        // 背景をビューポートより少し大きく表示し、ページを一番下までスクロールした瞬間に
-        // 背景の一番下もちょうど揃うように、スクロール量に応じて背景位置を計算する
-        const BG_HEIGHT_FACTOR = 1.6; // 大きいほど背景がゆっくり動く（1に近いほど通常スクロールに近づく）
-
-        function updateBackgroundScroll() {
-            // スマホでは背景を固定表示し、スクロールで動かないようにする
-            if (window.innerWidth < 768) {
-                document.body.style.backgroundAttachment = 'fixed';
-                document.body.style.backgroundSize = '100% auto';
-                document.body.style.backgroundPositionY = '0px';
-                return;
-            }
-            // PC用：パラレックス効果で背景をスクロール
-            const scrollY = window.scrollY;
-            const maxScroll = document.documentElement.scrollHeight - window.innerHeight;
-            const scrollProgress = scrollY / maxScroll;
-            const bgYOffset = -(scrollY / BG_HEIGHT_FACTOR);
-            document.body.style.backgroundPositionY = bgYOffset + 'px';
-        }
-
-        window.addEventListener('scroll', updateBackgroundScroll);
-        updateBackgroundScroll();
-        updateHeroBgParallax();
-    </script>
-
     <!-- ツールカード/役職カードのモーダル表示制御 -->
     <script>
         const toolModal = document.getElementById('tool-modal');
@@ -235,61 +174,13 @@
         const toolCards = document.querySelectorAll('.tool-card, .role-card');
 
         const toolData = {
-            'red-flag': {
-                name: '赤旗',
-                count: '3枚',
-                description: '<div class="tool-modal-section"><h4>説明</h4><p>ターゲットプレイヤーを指定して、そのプレイヤーの道具1枚の情報を獲得します。</p></div>'
-            },
-            'mask': {
-                name: '仮面',
-                count: '2枚',
-                description: '<div class="tool-modal-section"><h4>説明</h4><p>自分の道具情報を隠します。相手が情報収集する際に情報を与えません。</p></div>'
-            },
-            'cigar': {
-                name: '葉巻',
-                count: '2枚',
-                description: '<div class="tool-modal-section"><h4>説明</h4><p>複数プレイヤーから情報を集めます。</p></div>'
-            },
-            'warrant': {
-                name: '令状',
-                count: '2枚',
-                description: '<div class="tool-modal-section"><h4>説明</h4><p>ターゲットの役職を強制公開させます。</p></div>'
-            },
-            'crystal-ball': {
-                name: '水晶',
-                count: '2枚',
-                description: '<div class="tool-modal-section"><h4>説明</h4><p>全プレイヤーの手札を確認できます。</p></div>'
-            },
-            'coin': {
-                name: '金貨',
-                count: '3枚',
-                description: '<div class="tool-modal-section"><h4>説明</h4><p>相手プレイヤーに賄賂を渡し、情報を聞き出します。</p></div>'
-            },
-            'gun': {
-                name: '拳銃',
-                count: '1枚',
-                description: '<div class="tool-modal-section"><h4>説明</h4><p>強力な決闘ツール。決闘で有利になります。</p></div>'
-            },
-            'citizen': {
-                name: '市民',
-                count: '役職',
-                description: '<div class="tool-modal-section"><h4>説明</h4><p>基本的な役職。特殊能力はありません。</p></div>'
-            },
-            'noble': {
-                name: '貴族',
-                count: '役職',
-                description: '<div class="tool-modal-section"><h4>説明</h4><p>強力な道具に有利な役職。</p></div>'
-            },
-            'slave': {
-                name: '奴隷',
-                count: '役職',
-                description: '<div class="tool-modal-section"><h4>説明</h4><p>弱い道具でも勝てる可能性がある役職。</p></div>'
-            },
-            'jester': {
-                name: '道化',
-                count: '役職',
-                description: '<div class="tool-modal-section"><h4>説明</h4><p>特殊な能力を持つ役職。</p></div>'
-            }
+            'red-flag': { name: '赤旗', count: '3枚', description: '<div class="tool-modal-section"><h4>説明</h4><p>ターゲットプレイヤーを指定して、そのプレイヤーの道具1枚の情報を獲得します。</p></div>' },
+            'mask': { name: '仮面', count: '2枚', description: '<div class="tool-modal-section"><h4>説明</h4><p>自分の道具情報を隠します。相手が情報収集する際に情報を与えません。</p></div>' },
+            'cigar': { name: '葉巻', count: '2枚', description: '<div class="tool-modal-section"><h4>説明</h4><p>複数プレイヤーから情報を集めます。</p></div>' },
+            'warrant': { name: '令状', count: '2枚', description: '<div class="tool-modal-section"><h4>説明</h4><p>ターゲットの役職を強制公開させます。</p></div>' },
+            'crystal-ball': { name: '水晶', count: '2枚', description: '<div class="tool-modal-section"><h4>説明</h4><p>全プレイヤーの手札を確認できます。</p></div>' },
+            'coin': { name: '金貨', count: '3枚', description: '<div class="tool-modal-section"><h4>説明</h4><p>相手プレイヤーに賄賂を渡し、情報を聞き出します。</p></div>' },
+            'gun': { name: '拳銃', count: '1枚', description: '<div class="tool-modal-section"><h4>説明</h4><p>強力な決闘ツール。決闘で有利になります。</p></div>' }
         };
 
         toolCards.forEach(card => {
@@ -396,7 +287,6 @@
                 
                 const formData = new FormData(reserveForm);
                 
-                // FBZX値を自動生成
                 const fbzxValue = new Date().getTime();
                 document.getElementById('fbzx-field').value = fbzxValue;
                 document.getElementById('partial-response-field').value = '[]';
