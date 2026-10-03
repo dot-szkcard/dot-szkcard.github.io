@@ -32,6 +32,7 @@
 
 html {
     height: 100%;
+    background: var(--bg-color);
 }
 
 body {
@@ -48,8 +49,6 @@ body {
         /* ドット絵用のくっきり設定 */
         image-rendering: pixelated;
         image-rendering: crisp-edges;
-        
-        /* スマホSafariで背景が足りない問題を防ぐ */
         min-height: 100vh;
         background-color: var(--bg-color);
 }
@@ -612,13 +611,29 @@ body.modal-open {
 
 @media (max-width: 767px) {
     body {
-        background-attachment: fixed;
-        /* モバイルは高さ基準で背景を合わせて固定表示（幅は自動） */
-        background-size: auto 100%;
+        background-attachment: scroll !important;
+        background-image: none !important;
+        background-size: cover !important;
+        background-position: top center !important;
+        background-color: var(--bg-color);
+    }
+    .fixed-bg {
+        display: block;
+        position: fixed;
+        inset: 0;
+        z-index: -1;
+        background-image: url('bg.png');
+        background-size: cover;
+        background-color: var(--bg-color);
         background-position: top center;
+        background-repeat: no-repeat;
+        image-rendering: pixelated;
+        image-rendering: crisp-edges;
+        pointer-events: none;
+        -webkit-backface-visibility: hidden;
+        -webkit-transform: translateZ(0);
     }
     .hero {
-        /* 固定ナビに被らない余白を確保（ナビ高さ + 余白） */
         padding: 88px 1rem 20px;
     }
 }
