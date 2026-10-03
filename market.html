@@ -44,66 +44,92 @@
 
 	<main>
 
-		<section>
-			<h2>ブース情報</h2>
-			<div class="rule-box">
-				<ul>
-					<li>イベント名：ゲームマーケット 2026 秋</li>
-					<li>日程：2026年10月18日（日）</li>
-					<li>開催会場：幕張メッセ</li>
-					<li>ブース番号：H096</li>
-					<li>頒布物：チラシ</li>
-				</ul>
-			</div>
-		</section>
+		<!--
+			▼ 新しいイベントを追加するとき
+			下の <article class="event"> ～ </article> をまるごとコピーして、
+			<main> の中に貼り付け、イベント名と中身を書き換えてください。
+			・新しいイベントを上に出したい場合は、いちばん上のイベントの前に貼り付けます。
+			・id は他のイベントと重複しない半角英数字にします（例: gm2027spring）。
+			・中のセクション（ブース情報、販売物など）は、必要なものだけ残して構いません。
 
-		<section>
-			<h2>販売物（予定）</h2>
-			<div class="rule-box">
-				<ul>
-					<li><strong>Dot.</strong> — 価格：2,500円</li>
-				</ul>
-				<div class="package-images">
-					<img src="Dot_package_1.jpg" alt="Dot.のパッケージ、カード、トークン、ストーリーシート" width="2048" height="1534" loading="lazy">
-					<img src="Dot_package_2.jpg" alt="Dot.のパッケージ（箱）" width="1080" height="1080" loading="lazy">
+			最小の形:
+			<article class="event" id="イベントID">
+				<h2 class="event-title">イベント名</h2>
+				<section>
+					<h2>ブース情報</h2>
+					<div class="rule-box">
+						<p>ここに内容</p>
+					</div>
+				</section>
+			</article>
+		-->
+
+		<!-- ===== ゲームマーケット2026秋 ===== -->
+		<article class="event" id="gm2026autumn">
+			<h2 class="event-title">ゲームマーケット2026秋</h2>
+
+			<section>
+				<h2>ブース情報</h2>
+				<div class="rule-box">
+					<ul>
+						<li>イベント名：ゲームマーケット 2026 秋</li>
+						<li>日程：2026年10月18日（日）</li>
+						<li>開催会場：幕張メッセ</li>
+						<li>ブース番号：H096</li>
+						<li>頒布物：チラシ</li>
+					</ul>
 				</div>
-				<p class="note">※価格・在庫はイベント当日の状況で変動する場合があります。事前予約や通販を行う場合は別途案内します。</p>
-			</div>
-		</section>
+			</section>
 
-		<section>
-			<h2>事前予約・取り置き</h2>
-			<div class="rule-box">
-				<p>イベント当日の取り置きや事前予約を希望される場合は、トップページの予約フォームよりお申し込みください（先着順・在庫限り）。</p>
-				<p>フォームに記載いただいたメールアドレスへ受付確認をお送りします。キャンセルや数量変更は出展日前日までにX（@Dot_szkcard）またはメール（dot.szkcard.official@gmail.com）までご連絡ください。</p>
-			</div>
-		</section>
+			<section>
+				<h2>販売物（予定）</h2>
+				<div class="rule-box">
+					<ul>
+						<li><strong>Dot.</strong> — 価格：2,500円</li>
+					</ul>
+					<div class="package-images">
+						<img src="Dot_package_1.jpg" alt="Dot.のパッケージ、カード、トークン、ストーリーシート" width="2048" height="1534" loading="lazy">
+						<img src="Dot_package_2.jpg" alt="Dot.のパッケージ（箱）" width="1080" height="1080" loading="lazy">
+					</div>
+					<p class="note">※価格・在庫はイベント当日の状況で変動する場合があります。事前予約や通販を行う場合は別途案内します。</p>
+				</div>
+			</section>
 
-		<section>
-			<h2>アクセス</h2>
-			<div class="rule-box">
-				<p>最寄り駅：京葉線　海浜幕張駅。会場案内図は主催ページをご参照ください。</p>
-				<p>会場内のブース位置は当日掲示物をご確認ください。混雑が予想されるため、公共交通機関での来場を推奨します。</p>
-			</div>
-		</section>
+			<section>
+				<h2>事前予約・取り置き</h2>
+				<div class="rule-box">
+					<p>イベント当日の取り置きや事前予約を希望される場合は、トップページの予約フォームよりお申し込みください（先着順・在庫限り）。</p>
+					<p>フォームに記載いただいたメールアドレスへ受付確認をお送りします。キャンセルや数量変更は出展日前日までにX（@Dot_szkcard）またはメール（dot.szkcard.official@gmail.com）までご連絡ください。</p>
+				</div>
+			</section>
 
-		<section>
-			<h2>FAQ</h2>
-			<div class="rule-box">
-				<ul>
-					<li><strong>Q:</strong> 当日購入後の返品はできますか？<br><strong>A:</strong> イベント会場での返品は原則お受けできません。初期不良はスタッフまでお知らせください。</li>
-					<li><strong>Q:</strong> 予約しても当日受け取れない場合は？<br><strong>A:</strong> 代理受取や発送対応については事前にお問い合わせください（別途送料がかかります）。</li>
-					<li><strong>Q:</strong> クレジットカードは使えますか？<br><strong>A:</strong> 基本は現金・電子決済を想定しています。詳細は当日ブースで案内します。</li>
-				</ul>
-			</div>
-		</section>
+			<section>
+				<h2>アクセス</h2>
+				<div class="rule-box">
+					<p>最寄り駅：京葉線　海浜幕張駅。会場案内図は主催ページをご参照ください。</p>
+					<p>会場内のブース位置は当日掲示物をご確認ください。混雑が予想されるため、公共交通機関での来場を推奨します。</p>
+				</div>
+			</section>
 
-		<section>
-			<h2>お問い合わせ</h2>
-			<div class="rule-box">
-				<p>ご質問はX（@Dot_szkcard）またはメール（dot.szkcard.official@gmail.com）までお願いいたします。返信には数日かかる場合があります。</p>
-			</div>
-		</section>
+			<section>
+				<h2>FAQ</h2>
+				<div class="rule-box">
+					<ul>
+						<li><strong>Q:</strong> 当日購入後の返品はできますか？<br><strong>A:</strong> イベント会場での返品は原則お受けできません。初期不良はスタッフまでお知らせください。</li>
+						<li><strong>Q:</strong> 予約しても当日受け取れない場合は？<br><strong>A:</strong> 代理受取や発送対応については事前にお問い合わせください（別途送料がかかります）。</li>
+						<li><strong>Q:</strong> クレジットカードは使えますか？<br><strong>A:</strong> 基本は現金・電子決済を想定しています。詳細は当日ブースで案内します。</li>
+					</ul>
+				</div>
+			</section>
+
+			<section>
+				<h2>お問い合わせ</h2>
+				<div class="rule-box">
+					<p>ご質問はX（@Dot_szkcard）またはメール（dot.szkcard.official@gmail.com）までお願いいたします。返信には数日かかる場合があります。</p>
+				</div>
+			</section>
+
+		</article>
 	</main>
 
 	<footer>
