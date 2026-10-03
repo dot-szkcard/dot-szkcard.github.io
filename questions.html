@@ -1,1 +1,143 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>よくある質問｜「Dot.」公式ウェブサイト</title>
+    <meta name="description" content="『Dot.』についてよくある質問とその答えをご紹介します。">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="fixed-bg" aria-hidden="true"></div>
 
+    <!-- ナビゲーションバー -->
+    <nav>
+        <a href="index.html" class="nav-logo"><img src="logo_shadow.png" alt="Dot."></a>
+        <!-- PC用通常メニュー -->
+        <ul class="nav-links">
+            <li><a href="index.html">ホーム</a></li>
+            <li><a href="market.html">イベント情報</a></li>
+            <li><a href="related_video.html">関連動画</a></li>
+            <li><a href="rule_book.html">ルールブック</a></li>
+            <li><a href="questions.html">よくある質問</a></li>
+        </ul>
+        <!-- スマホ用ハンバーガーボタン -->
+        <button class="hamburger" id="hamburger-btn" aria-controls="mobile-menu" aria-expanded="false" aria-label="メニュー開閉">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+    </nav>
+
+    <!-- スマホ用ドロワーメニュー -->
+    <div class="mobile-menu" id="mobile-menu" aria-hidden="true">
+        <button id="mobile-menu-close" class="mobile-close" aria-label="メニューを閉じる">×</button>
+        <ul>
+            <li><a href="index.html" class="menu-link">ホーム</a></li>
+            <li><a href="market.html" class="menu-link">イベント情報</a></li>
+            <li><a href="related_video.html" class="menu-link">関連動画</a></li>
+            <li><a href="rule_book.html" class="menu-link">ルールブック</a></li>
+            <li><a href="questions.html" class="menu-link">よくある質問</a></li>
+        </ul>
+    </div>
+
+    <!-- ページヒーロー -->
+    <header class="page-hero">
+        <h1>よくある質問</h1>
+        <p>『Dot.』についてのご質問にお答えします</p>
+        <a href="index.html" class="back-link">← ホームに戻る</a>
+    </header>
+
+    <!-- コンテンツセクション -->
+    <section>
+        <h2>よくある質問</h2>
+        <p style="text-align:center; color:var(--text-muted); padding:40px 20px;">
+            よくある質問は準備中です。お待たせしてすみません。
+        </p>
+    </section>
+
+    <!-- フッター -->
+    <footer>
+        <p>&copy; 2026 Dot. All Rights Reserved.</p>
+        <div class="footer-social">
+            <a href="https://twitter.com/Dot_szkcard" target="_blank">𝕏</a>
+            <a href="https://instagram.com/dot_szkcard/" target="_blank">Instagram</a>
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script>
+        const BG_HEIGHT_FACTOR = 1.6;
+
+        function updateBackgroundScroll() {
+            if (window.innerWidth < 768) {
+                document.body.style.backgroundAttachment = 'fixed';
+                document.body.style.backgroundSize = '100% auto';
+                document.body.style.backgroundPositionY = '0px';
+                return;
+            }
+
+            const viewportWidth = window.innerWidth;
+            const viewportHeight = window.innerHeight;
+
+            if (!window._bgNatural) {
+                const img = new Image();
+                img.src = 'bg.png';
+                img.onload = function() {
+                    window._bgNatural = { w: img.naturalWidth, h: img.naturalHeight };
+                    updateBackgroundScroll();
+                };
+                document.body.style.backgroundSize = '100% auto';
+                return;
+            }
+
+            const natural = window._bgNatural;
+            const bgHeight = Math.round(viewportWidth * natural.h / natural.w);
+            document.body.style.backgroundSize = '100% ' + bgHeight + 'px';
+
+            const scrollableHeight = document.documentElement.scrollHeight - viewportHeight;
+            const maxBgOffset = Math.max(bgHeight - viewportHeight, 0);
+
+            if (scrollableHeight <= 0 || maxBgOffset <= 0) {
+                document.body.style.backgroundPositionY = '0px';
+                return;
+            }
+
+            const scrollFraction = Math.min(Math.max(window.scrollY / scrollableHeight, 0), 1);
+            document.body.style.backgroundPositionY = '-' + (scrollFraction * maxBgOffset) + 'px';
+        }
+
+        window.addEventListener('scroll', updateBackgroundScroll);
+        window.addEventListener('resize', updateBackgroundScroll);
+        window.addEventListener('load', updateBackgroundScroll);
+        updateBackgroundScroll();
+
+        const hamburgerBtn = document.getElementById('hamburger-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const menuLinks = document.querySelectorAll('.menu-link');
+
+        function toggleMenu() {
+            const isActive = hamburgerBtn.classList.toggle('active');
+            mobileMenu.classList.toggle('active');
+            hamburgerBtn.setAttribute('aria-expanded', isActive ? 'true' : 'false');
+            mobileMenu.setAttribute('aria-hidden', isActive ? 'false' : 'true');
+        }
+
+        hamburgerBtn.addEventListener('click', toggleMenu);
+
+        menuLinks.forEach(link => {
+            link.addEventListener('click', toggleMenu);
+        });
+
+        const mobileMenuCloseBtn = document.getElementById('mobile-menu-close');
+        if (mobileMenuCloseBtn) {
+            mobileMenuCloseBtn.addEventListener('click', () => {
+                if (mobileMenu.classList.contains('active')) toggleMenu();
+            });
+        }
+
+        hamburgerBtn.setAttribute('aria-expanded', 'false');
+        mobileMenu.setAttribute('aria-hidden', 'true');
+    </script>
+</body>
+</html>
