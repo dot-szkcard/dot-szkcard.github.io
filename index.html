@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ゲームマーケット2026秋出展！「Dot.」公式ウェブサイト｜ホーム</title>
-    <meta name="description" content="ゲームマーケット2026秋に出展予定のカードゲーム『Dot.』の公式サイトです。ルールやカード紹介、ゲムマ出展情報を掲載中！">
+    <meta name="description" content="ゲームマーケット2026秋に出展予定のカードゲーム『Dot.』の公式サイトです。ルールやカード紹介、ゲムマ出展情報を確認できます。" />
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -41,6 +41,9 @@
             <li><a href="questions.html">よくある質問</a></li>
         </ul>
     </div>
+
+    <!-- ヘッダー背景エリア（スクロールで消える） -->
+    <div class="hero-bg" id="hero-bg"></div>
 
     <!-- ヒーローセクション -->
     <header class="hero" id="about">
@@ -81,7 +84,7 @@
             <p>対抗</p>
             <p>お互いのカード2枚の戦力を比べて勝負する。役職の相性によっては、弱い道具でも勝てることがある。</p>
             <p>奇襲</p>
-            <p></p>相手の道具を予想し、その正体を言い当てる。的中したら勝利。外したら敗北。</p>
+            <p>相手の道具を予想し、その正体を言い当てる。的中したら勝利。外したら敗北。</p>
         </div>
 
         <div class="rule-step">
@@ -185,6 +188,19 @@
 
     <!-- ハンバーガーメニュー制御用のJavaScript -->
     <script>
+        // --- ヘッダー背景のパラレックス効果 ---
+        const heroBgElement = document.getElementById('hero-bg');
+        
+        function updateHeroBgParallax() {
+            if (!heroBgElement) return;
+            
+            const scrollY = window.scrollY;
+            // スクロール量の30%だけ移動（パラレックス効果）
+            heroBgElement.style.transform = `translateY(${scrollY * 0.3}px)`;
+        }
+        
+        window.addEventListener('scroll', updateHeroBgParallax);
+
         // --- 背景のスローパラララックス制御 ---
         // 背景をビューポートより少し大きく表示し、ページを一番下までスクロールした瞬間に
         // 背景の一番下もちょうど揃うように、スクロール量に応じて背景位置を計算する
@@ -198,361 +214,211 @@
                 document.body.style.backgroundPositionY = '0px';
                 return;
             }
-
-            const viewportWidth = window.innerWidth;
-            const viewportHeight = window.innerHeight;
-
-            // 背景画像の実寸（naturalWidth/naturalHeight）を取得して
-            // ビューポート幅に合わせた描画高さを算出する
-            if (!window._bgNatural) {
-                const img = new Image();
-                img.src = 'bg.png';
-                img.onload = function() {
-                    window._bgNatural = { w: img.naturalWidth, h: img.naturalHeight };
-                    updateBackgroundScroll();
-                };
-                // 読み込み前は幅いっぱいで表示
-                document.body.style.backgroundSize = '100% auto';
-                return;
-            }
-
-            const natural = window._bgNatural;
-            const bgHeight = Math.round(viewportWidth * natural.h / natural.w);
-            // 幅100%にして高さは画像縦横比に合わせる
-            document.body.style.backgroundSize = '100% ' + bgHeight + 'px';
-
-            const scrollableHeight = document.documentElement.scrollHeight - viewportHeight;
-            const maxBgOffset = Math.max(bgHeight - viewportHeight, 0);
-
-            if (scrollableHeight <= 0 || maxBgOffset <= 0) {
-                document.body.style.backgroundPositionY = '0px';
-                return;
-            }
-
-            const scrollFraction = Math.min(Math.max(window.scrollY / scrollableHeight, 0), 1);
-            document.body.style.backgroundPositionY = '-' + (scrollFraction * maxBgOffset) + 'px';
+            // PC用：パラレックス効果で背景をスクロール
+            const scrollY = window.scrollY;
+            const maxScroll = document.documentElement.scrollHeight - window.innerHeight;
+            const scrollProgress = scrollY / maxScroll;
+            const bgYOffset = -(scrollY / BG_HEIGHT_FACTOR);
+            document.body.style.backgroundPositionY = bgYOffset + 'px';
         }
 
         window.addEventListener('scroll', updateBackgroundScroll);
-        window.addEventListener('resize', updateBackgroundScroll);
-        window.addEventListener('load', updateBackgroundScroll);
         updateBackgroundScroll();
+        updateHeroBgParallax();
+    </script>
 
-        const hamburgerBtn = document.getElementById('hamburger-btn');
-        const mobileMenu = document.getElementById('mobile-menu');
-        const menuLinks = document.querySelectorAll('.menu-link');
-
-        // メニューの開閉を切り替える関数（ARIA状態も更新）
-        function toggleMenu() {
-            const isActive = hamburgerBtn.classList.toggle('active');
-            mobileMenu.classList.toggle('active');
-            hamburgerBtn.setAttribute('aria-expanded', isActive ? 'true' : 'false');
-            mobileMenu.setAttribute('aria-hidden', isActive ? 'false' : 'true');
-        }
-
-        // ハンバーガーボタンクリック時
-        hamburgerBtn.addEventListener('click', toggleMenu);
-
-        // メニュー内のリンクをクリックしたらメニューを閉じる
-        menuLinks.forEach(link => {
-            link.addEventListener('click', toggleMenu);
-        });
-
-        // モバイルメニューの閉じるボタン
-        const mobileMenuCloseBtn = document.getElementById('mobile-menu-close');
-        if (mobileMenuCloseBtn) {
-            mobileMenuCloseBtn.addEventListener('click', () => {
-                // もしメニューが開いていれば閉じる
-                if (mobileMenu.classList.contains('active')) toggleMenu();
-            });
-        }
-
-        // 初期ARIA状態を確実に設定
-        hamburgerBtn.setAttribute('aria-expanded', 'false');
-        mobileMenu.setAttribute('aria-hidden', 'true');
-
-
-
-        // --- 道具カード詳細モーダル ---
+    <!-- ツールカード/役職カードのモーダル表示制御 -->
+    <script>
         const toolModal = document.getElementById('tool-modal');
         const toolModalPanel = toolModal.querySelector('.tool-modal-panel');
         const toolModalClose = document.getElementById('tool-modal-close');
-        const toolModalTitle = document.getElementById('tool-modal-title');
-        const toolModalImage = document.getElementById('tool-modal-image');
-        const toolModalCount = document.getElementById('tool-modal-count');
-        const toolModalContent = document.getElementById('tool-modal-content');
         const toolCards = document.querySelectorAll('.tool-card, .role-card');
-        let lastFocusedToolCard = null;
 
-        const toolDetails = {
+        const toolData = {
             'red-flag': {
                 name: '赤旗',
-                image: 'Red_Flag.png',
-                count: '道具カード｜収録枚数：1枚',
-                html: `
-                    <div class="tool-modal-section">
-                        <h4>効果</h4>
-                        <p>このラウンドの夜フェーズで以下の効果を得る。</p>
-                        <ul>
-                            <li>対抗で自分が攻め手の場合、戦力が小さい方が勝者となる。</li>
-                            <li>※戦力が同じ場合は攻め手が勝者となる。</li>
-                        </ul>
-                    </div>
-                    <div class="tool-modal-section">
-                        <h4>使用上の注意</h4>
-                        <ul>
-                            <li>道具カードの効果は、カードを出した瞬間ではなく、夜フェーズの条件を満たしたときに発動する。</li>
-                            <li>昼に場に出しても、夜フェーズで自分が攻め手になれなかった場合、赤旗の効果は発動しない。</li>
-                            <li>赤旗は1枚しかない貴重なカード。使いどころを見極めよう。</li>
-                        </ul>
-                    </div>
-                    <div class="tool-modal-section">
-                        <h4>戦術メモ</h4>
-                        <p>赤旗は「戦力が低いほうが勝つ」という通常とは逆の勝敗ルールを作り出せる道具。自分の戦力が低いと分かっている時や、相手にわざと弱いカードだと思わせたい時のブラフ戦術にも使える。</p>
-                    </div>
-                `
+                count: '3枚',
+                description: '<div class="tool-modal-section"><h4>説明</h4><p>ターゲットプレイヤーを指定して、そのプレイヤーの道具1枚の情報を獲得します。</p></div>'
             },
             'mask': {
-                name: '仮面', image: 'Mask.png', count: '道具カード｜収録枚数：3枚',
-                html: `
-                    <div class="tool-modal-section"><h4>効果</h4><p>好きなプレイヤー1人を選び、役職カードを交換する。</p>
-                    <p>※自分の役職がわからなくなることもある。</p></div>
-                    <div class="tool-modal-section">
-                        <h4>使用上の注意</h4>
-                        <ul>
-                            <li>仮面で交換した後は新しい役職カードの上に証明チップはのせない。</li>
-                            <li>仮面による役職の交換が行われた後、葉巻によって役職の移動が行われた場合を考える。その夜決闘で攻め手が自身の役職カードに自分の証明チップをのせているのに対し、受け手は証明チップをのせていない場合、
-                            受け手への役職チップ付与が行われ、自身の役職を確認できる。</li>
-                        </ul>
-                    </div>
-                    <div class="tool-modal-section">
-                        <h4>戦術メモ</h4>
-                        <p>仮面は相手の役職を奪うことができる強力な道具。相手の戦略を崩すために使うのも良いし、逆に自分の役職を隠すために使うのも有効だ。</p>
-                    </div>
-                `
+                name: '仮面',
+                count: '2枚',
+                description: '<div class="tool-modal-section"><h4>説明</h4><p>自分の道具情報を隠します。相手が情報収集する際に情報を与えません。</p></div>'
             },
             'cigar': {
-                name: '葉巻', image: 'Cigar.png', count: '道具カード｜収録枚数：3枚',
-                html: `
-                    <div class="tool-modal-section">
-                        <h4>効果</h4>
-                        <p>酒場の役職カードのうち好きな1枚と自分の役職カードを交換する。新たな自分の役職カードの上に証明チップをのせる。</p>
-                    </div>
-                    <div class="tool-modal-section">
-                        <h4>使用上の注意</h4>
-                        <ul>
-                            <li>酒場の役職は基本未知である。未知の役職と交換するのはかなりリスキーだ。</li>
-                            
-                        </ul>
-                    </div>
-                    <div class="tool-modal-section">
-                        <h4>戦術メモ</h4>
-                        <p></p>
-                    </div>
-                `
+                name: '葉巻',
+                count: '2枚',
+                description: '<div class="tool-modal-section"><h4>説明</h4><p>複数プレイヤーから情報を集めます。</p></div>'
             },
             'warrant': {
-                name: '令状', image: 'Warrant.png', count: '道具カード｜収録枚数：3枚',
-                html: `
-                    <div class="tool-modal-section">
-                        <h4>効果</h4>
-                        <p>他のプレイヤーは手番が早い順に、自分の手札にない道具を１つ宣言し、記録カードのその道具の欄に自分の証明チップ（裏）をのせる。</p>
-                        <p>自分の証明チップまたは枯渇チップがのっている道具は宣言できない。</p>
-                    </div>
-                    <div class="tool-modal-section">
-                        <h4>戦術メモ</h4>
-                        <p>他のプレイヤーの道具情報を知ることができる。推測を有利に進めよう。</p>
-                    </div>
-                `
+                name: '令状',
+                count: '2枚',
+                description: '<div class="tool-modal-section"><h4>説明</h4><p>ターゲットの役職を強制公開させます。</p></div>'
             },
             'crystal-ball': {
-                name: '水晶', image: 'Crystal_Ball.png', count: '道具カード｜収録枚数：2枚',
-                html: `
-                    <div class="tool-modal-section">
-                        <h4>効果</h4>
-                        <p>酒場の役職カードのうち好きな1枚の表を見て戻す。その後その上に自分の証明チップ（表）をのせる。</p>
-                    </div>
-                    <div class="tool-modal-section">
-                        <h4>戦術メモ</h4>
-                        <p>水晶は酒場の役職カードを1枚知ることができる。役職を推測するのに有効だ。</p>
-                    </div>
-                `
+                name: '水晶',
+                count: '2枚',
+                description: '<div class="tool-modal-section"><h4>説明</h4><p>全プレイヤーの手札を確認できます。</p></div>'
             },
             'coin': {
-                name: '金貨', image: 'Coin.png', count: '道具カード｜収録枚数：2枚',
-                html: `
-                    <div class="tool-modal-section">
-                        <h4>効果</h4>
-                        <p>手札から1枚選び自分の前に裏向きで伏せ、証明チップ（表）をのせる。</p>
-                        <p>その後、新たに山札から1枚引き手札に加える。記録カードにのせた自分の証明チップはすべて回収する。</p>
-                    </div>
-                    <div class="tool-modal-section">
-                        <h4>使用上の注意</h4>
-                        <ul>
-                            <li>運要素が強いカード。使いどころを見極めよう。</li>
-                        </ul>
-                    </div>
-                    <div class="tool-modal-section">
-                        <h4>戦術メモ</h4>
-                        <p>道具値が高い分、効果を発動するとかなり強いカードだ。</p>
-                    </div>
-                `
+                name: '金貨',
+                count: '3枚',
+                description: '<div class="tool-modal-section"><h4>説明</h4><p>相手プレイヤーに賄賂を渡し、情報を聞き出します。</p></div>'
             },
             'gun': {
-                name: '拳銃', image: 'Gun.png', count: '道具カード｜収録枚数：1枚',
-                html: `
-                    <div class="tool-modal-section">
-                        <h4>効果</h4>
-                        <p>このラウンドの夜フェーズで以下の効果を得る。</p>
-                        <ul>
-                            <li>決闘で勝利した場合、獲得ポイントが+2ptから+3ptになる。</li>
-                        </ul>
-                    </div>
-                    <div class="tool-modal-section">
-                        <h4>使用上の注意</h4>
-                        <ul>
-                            <li>拳銃は1枚しかない貴重なカード。使いどころを見極めよう。</li>
-                        </ul>
-                    </div>
-                    <div class="tool-modal-section">
-                        <h4>戦術メモ</h4>
-                        <p>拳銃は決闘の結果に大きな影響を与えることができる。慎重に使用しよう。</p>
-                    </div>
-                `
-            }
-            ,
+                name: '拳銃',
+                count: '1枚',
+                description: '<div class="tool-modal-section"><h4>説明</h4><p>強力な決闘ツール。決闘で有利になります。</p></div>'
+            },
             'citizen': {
-                name: '市民', image: 'Citizen.png', count: '役職カード',
-                html: `<div class="tool-modal-section"><h4>役職：市民</h4><p>赤旗の戦力が10になる。</p></div>`
+                name: '市民',
+                count: '役職',
+                description: '<div class="tool-modal-section"><h4>説明</h4><p>基本的な役職。特殊能力はありません。</p></div>'
             },
             'noble': {
-                name: '貴族', image: 'Noble.png', count: '役職カード',
-                html: `<div class="tool-modal-section"><h4>役職：貴族</h4><p>戦力+2</p></div>`
+                name: '貴族',
+                count: '役職',
+                description: '<div class="tool-modal-section"><h4>説明</h4><p>強力な道具に有利な役職。</p></div>'
             },
             'slave': {
-                name: '奴隷', image: 'Slave.png', count: '役職カード',
-                html: `<div class="tool-modal-section"><h4>役職：奴隷</h4><p>基本は戦力-2。相手が貴族のときは戦力が10になる。</p></div>`
+                name: '奴隷',
+                count: '役職',
+                description: '<div class="tool-modal-section"><h4>説明</h4><p>弱い道具でも勝てる可能性がある役職。</p></div>'
             },
             'jester': {
-                name: '道化', image: 'Jester.png', count: '役職カード',
-                html: `<div class="tool-modal-section"><h4>役職：道化</h4><p>自分が受け手の場合、勝者が逆転する。</p></div>`
+                name: '道化',
+                count: '役職',
+                description: '<div class="tool-modal-section"><h4>説明</h4><p>特殊な能力を持つ役職。</p></div>'
             }
         };
 
-        function openToolModal(toolKey, trigger) {
-            const detail = toolDetails[toolKey];
-            if (!detail) return;
-
-            lastFocusedToolCard = trigger || document.activeElement;
-            toolModalTitle.textContent = detail.name;
-            toolModalImage.src = detail.image;
-            toolModalImage.alt = detail.name;
-            toolModalCount.textContent = detail.count;
-            toolModalContent.innerHTML = detail.html;
-
-            toolModal.classList.add('active');
-            toolModal.setAttribute('aria-hidden', 'false');
-            document.body.classList.add('modal-open');
-            toolModalPanel.scrollTop = 0;
-            toolModalClose.focus();
-        }
-
-        function closeToolModal() {
-            if (!toolModal.classList.contains('active')) return;
-            toolModal.classList.remove('active');
-            toolModal.setAttribute('aria-hidden', 'true');
-            document.body.classList.remove('modal-open');
-            if (lastFocusedToolCard) lastFocusedToolCard.focus();
-        }
-
         toolCards.forEach(card => {
-            card.addEventListener('click', () => openToolModal(card.dataset.tool, card));
+            card.addEventListener('click', () => {
+                const toolId = card.getAttribute('data-tool');
+                const data = toolData[toolId];
+                
+                if (data) {
+                    document.getElementById('tool-modal-image').src = card.querySelector('img').src;
+                    document.getElementById('tool-modal-title').textContent = data.name;
+                    document.getElementById('tool-modal-count').textContent = data.count;
+                    document.getElementById('tool-modal-content').innerHTML = data.description;
+                    
+                    toolModal.setAttribute('aria-hidden', 'false');
+                    toolModal.classList.add('active');
+                    document.body.classList.add('modal-open');
+                }
+            });
         });
 
-        toolModalClose.addEventListener('click', closeToolModal);
+        function closeModal() {
+            toolModal.setAttribute('aria-hidden', 'true');
+            toolModal.classList.remove('active');
+            document.body.classList.remove('modal-open');
+        }
 
-        toolModal.addEventListener('click', event => {
-            if (event.target === toolModal) closeToolModal();
+        toolModalClose.addEventListener('click', closeModal);
+        toolModal.addEventListener('click', (e) => {
+            if (e.target === toolModal) closeModal();
         });
 
-        document.addEventListener('keydown', event => {
-            if (event.key === 'Escape' && toolModal.classList.contains('active')) {
-                closeToolModal();
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') closeModal();
+        });
+    </script>
+
+    <!-- ハンバーガーメニュー制御 -->
+    <script>
+        const hamburgerBtn = document.getElementById('hamburger-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const mobileMenuClose = document.getElementById('mobile-menu-close');
+        const menuLinks = mobileMenu.querySelectorAll('a');
+
+        hamburgerBtn.addEventListener('click', () => {
+            mobileMenu.classList.add('active');
+            mobileMenu.setAttribute('aria-hidden', 'false');
+            hamburgerBtn.classList.add('active');
+            hamburgerBtn.setAttribute('aria-expanded', 'true');
+        });
+
+        mobileMenuClose.addEventListener('click', () => {
+            mobileMenu.classList.remove('active');
+            mobileMenu.setAttribute('aria-hidden', 'true');
+            hamburgerBtn.classList.remove('active');
+            hamburgerBtn.setAttribute('aria-expanded', 'false');
+        });
+
+        menuLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.remove('active');
+                mobileMenu.setAttribute('aria-hidden', 'true');
+                hamburgerBtn.classList.remove('active');
+                hamburgerBtn.setAttribute('aria-expanded', 'false');
+            });
+        });
+    </script>
+
+    <!-- カウントダウンタイマー -->
+    <script>
+        const countdownElement = document.getElementById('countdown');
+        if (countdownElement) {
+            const targetDate = new Date('2026-10-25T00:00:00').getTime();
+            
+            function updateCountdown() {
+                const now = new Date().getTime();
+                const timeLeft = targetDate - now;
+                
+                if (timeLeft > 0) {
+                    const days = Math.floor(timeLeft / (1000 * 60 * 60 * 24));
+                    const hours = Math.floor((timeLeft % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                    const mins = Math.floor((timeLeft % (1000 * 60 * 60)) / (1000 * 60));
+                    const secs = Math.floor((timeLeft % (1000 * 60)) / 1000);
+                    
+                    document.getElementById('cd-days').textContent = String(days).padStart(2, '0');
+                    document.getElementById('cd-hours').textContent = String(hours).padStart(2, '0');
+                    document.getElementById('cd-mins').textContent = String(mins).padStart(2, '0');
+                    document.getElementById('cd-secs').textContent = String(secs).padStart(2, '0');
+                }
             }
-        });
+            
+            updateCountdown();
+            setInterval(updateCountdown, 1000);
+        }
+    </script>
 
-        
-
-        // --- 予約フォーム送信処理（裏側でGoogleフォームに送信） ---
+    <!-- 予約フォーム処理 -->
+    <script>
         const reserveForm = document.getElementById('reserve-form');
-        const reserveBtn = document.getElementById('reserve-submit-btn');
         const reserveStatus = document.getElementById('reserve-status');
-        const hiddenIframe = document.getElementById('hidden_iframe');
-        const fbzxField = document.getElementById('fbzx-field');
-        const partialResponseField = document.getElementById('partial-response-field');
-        let formSubmitted = false;
-
-        // Googleフォームが要求する擬似トークンをページ読み込み時に生成
-        function generateFbzx() {
-            // 実際のGoogleフォームのfbzxと同じ桁数(19桁前後)の数値文字列を生成
-            let token = '';
-            for (let i = 0; i < 19; i++) {
-                token += Math.floor(Math.random() * 10);
-            }
-            return token;
+        
+        if (reserveForm) {
+            reserveForm.addEventListener('submit', (e) => {
+                e.preventDefault();
+                
+                const formData = new FormData(reserveForm);
+                
+                // FBZX値を自動生成
+                const fbzxValue = new Date().getTime();
+                document.getElementById('fbzx-field').value = fbzxValue;
+                document.getElementById('partial-response-field').value = '[]';
+                
+                const xhr = new XMLHttpRequest();
+                xhr.open('POST', reserveForm.action, true);
+                xhr.onload = () => {
+                    reserveStatus.style.display = 'block';
+                    reserveStatus.textContent = '✓ 予約ありがとうございます！確認メールをお送りします。';
+                    reserveStatus.style.color = 'var(--primary-red)';
+                    reserveForm.reset();
+                };
+                
+                xhr.onerror = () => {
+                    reserveStatus.style.display = 'block';
+                    reserveStatus.textContent = '送信中にエラーが発生しました。もう一度お試しください。';
+                    reserveStatus.style.color = '#ff6b6b';
+                };
+                
+                xhr.send(formData);
+            });
         }
-        const fbzxValue = generateFbzx();
-        fbzxField.value = fbzxValue;
-        partialResponseField.value = '[null,null,"' + fbzxValue + '"]';
-
-        reserveForm.addEventListener('submit', function () {
-            reserveBtn.disabled = true;
-            reserveBtn.textContent = '送信中...';
-            reserveStatus.style.display = 'none';
-            formSubmitted = true;
-            // フォーム自体は通常どおりhidden_iframeへPOSTされる（画面遷移なし）
-        });
-
-        // 非表示iframeの読み込み完了 = Googleフォームへの送信完了とみなす
-        hiddenIframe.addEventListener('load', function () {
-            if (!formSubmitted) return; // 初回の空読み込みは無視
-
-            reserveStatus.style.display = 'block';
-            reserveStatus.style.color = '#7CFC7C';
-            reserveStatus.textContent = 'ご予約ありがとうございます！確認のメールをお送りしました。';
-            reserveForm.reset();
-            reserveBtn.disabled = false;
-            reserveBtn.textContent = '予約を確定する';
-            formSubmitted = false;
-        });
-        // ---------- Countdown ----------
-        // TODO: 実際のゲームマーケット開催日時に書き換えてください
-        const targetDate = new Date('2026-10-18T00:00:00+09:00').getTime();
- 
-        function updateCountdown(){
-          const now = Date.now();
-          const diff = targetDate - now;
-          const els = {
-            d: document.getElementById('cd-days'),
-            h: document.getElementById('cd-hours'),
-            m: document.getElementById('cd-mins'),
-            s: document.getElementById('cd-secs')
-          };
-          if(diff <= 0){
-            els.d.textContent = '00'; els.h.textContent='00'; els.m.textContent='00'; els.s.textContent='00';
-            return;
-          }
-          const day = Math.floor(diff/86400000);
-          const hr  = Math.floor((diff%86400000)/3600000);
-          const min = Math.floor((diff%3600000)/60000);
-          const sec = Math.floor((diff%60000)/1000);
-          els.d.textContent = String(day).padStart(2,'0');
-          els.h.textContent = String(hr).padStart(2,'0');
-          els.m.textContent = String(min).padStart(2,'0');
-          els.s.textContent = String(sec).padStart(2,'0');
-        }
-        updateCountdown();
-        setInterval(updateCountdown, 1000);
     </script>
 </body>
 </html>
