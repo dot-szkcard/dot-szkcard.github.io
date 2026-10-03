@@ -1161,6 +1161,38 @@ body::before {
     text-decoration: underline;
 }
 
+/* イベント情報ページ：イベントごとの枠（イベントを増やすときは .event を1つ足す） */
+.event {
+    width: calc(100% - 40px);
+    max-width: 800px;
+    margin: 30px auto 50px;
+    border: 1px solid #333;
+    border-left: 4px solid var(--primary-red);
+    background-color: rgba(0, 0, 0, 0.45);
+}
+
+.event-title {
+    margin: 0;
+    padding: 14px 20px;
+    text-align: left;
+    font-size: 1.3rem;
+    color: var(--text-light);
+    background-color: var(--primary-red);
+}
+
+.event-title::after {
+    display: none;   /* 通常の見出しの赤い下線は枠のタイトルでは不要 */
+}
+
+/* 枠の中ではセクションの上下余白を詰める */
+.event section {
+    padding: 30px 20px 10px;
+}
+
+.event section:last-of-type {
+    padding-bottom: 30px;
+}
+
 /* 道具/役職カードの効果一覧（グローバル版） */
 .effect-grid {
     display: grid;
