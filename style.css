@@ -1150,17 +1150,6 @@ body::before {
     background: #fff;
 }
 
-.rulebook-fallback {
-    padding: 20px;
-    text-align: center;
-    color: #333;
-}
-
-.rulebook-fallback a {
-    color: var(--primary-red);
-    text-decoration: underline;
-}
-
 .rulebook-open {
     margin-top: 8px;
     text-align: center;
