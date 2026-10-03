@@ -1103,6 +1103,22 @@ body::before {
     display: none !important;
 }
 
+/* ブース情報ページ：販売物の画像（広い画面では横並び、狭い画面では縦並び） */
+.package-images {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 12px;
+    align-items: center;
+    margin: 12px 0;
+}
+
+.package-images img {
+    display: block;
+    width: 100%;
+    height: auto;
+    border-radius: 4px;
+}
+
 /* 道具/役職カードの効果一覧（グローバル版） */
 .effect-grid {
     display: grid;
