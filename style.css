@@ -1285,6 +1285,69 @@ body::before {
     }
 }
 
+/* ルールブックページ：サマリーカード */
+.summary-lead {
+    margin-bottom: 24px;
+    text-align: center;
+    font-size: 1.05rem;
+    font-weight: bold;
+    color: var(--text-light);
+}
+
+.summary-cards {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 24px;
+    max-width: 860px;
+    margin: 0 auto;
+}
+
+.summary-card {
+    margin: 0;
+    text-align: center;
+}
+
+.summary-card a {
+    display: block;
+    border: 2px solid var(--primary-red);
+    border-radius: 6px;
+    overflow: hidden;
+    line-height: 0;
+    background-color: #111;
+    transition: transform 0.2s;
+}
+
+.summary-card a:hover {
+    transform: translateY(-4px);
+}
+
+.summary-card img {
+    display: block;
+    width: 100%;
+    height: auto;
+}
+
+.summary-card figcaption {
+    margin-top: 10px;
+    font-size: 0.95rem;
+    font-weight: bold;
+    color: var(--text-light);
+}
+
+.summary-card figcaption span {
+    margin-left: 6px;
+    font-size: 0.75rem;
+    font-weight: normal;
+    color: var(--text-muted);
+}
+
+@media (max-width: 600px) {
+    .summary-cards {
+        grid-template-columns: 1fr;
+        max-width: 420px;
+    }
+}
+
 /* 道具/役職カードの効果一覧（グローバル版） */
 .effect-grid {
     display: grid;
