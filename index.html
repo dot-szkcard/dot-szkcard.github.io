@@ -122,6 +122,7 @@
                 <div>
                     <h3 id="tool-modal-title"></h3>
                     <p class="tool-modal-count" id="tool-modal-count"></p>
+                    <p class="tool-modal-value" id="tool-modal-value" hidden></p>
                 </div>
             </div>
             <div id="tool-modal-content"></div>
@@ -279,6 +280,7 @@
         const toolModalTitle = document.getElementById('tool-modal-title');
         const toolModalImage = document.getElementById('tool-modal-image');
         const toolModalCount = document.getElementById('tool-modal-count');
+        const toolModalValue = document.getElementById('tool-modal-value');
         const toolModalContent = document.getElementById('tool-modal-content');
         const toolCards = document.querySelectorAll('.tool-card, .role-card');
         let lastFocusedToolCard = null;
@@ -288,6 +290,7 @@
                 name: '赤旗',
                 image: 'Red_Flag.png',
                 count: '道具カード｜収録枚数：1枚',
+                value: 1,
                 html: `
                     <div class="tool-modal-section">
                         <h4>効果</h4>
@@ -309,6 +312,7 @@
             },
             'mask': {
                 name: '仮面', image: 'Mask.png', count: '道具カード｜収録枚数：3枚',
+                value: 2,
                 html: `
                     <div class="tool-modal-section"><h4>効果</h4><p>好きなプレイヤー1人を選び、役職カードを交換する。</p></div>
                     <div class="tool-modal-section">
@@ -324,6 +328,7 @@
             },
             'cigar': {
                 name: '葉巻', image: 'Cigar.png', count: '道具カード｜収録枚数：3枚',
+                value: 3,
                 html: `
                     <div class="tool-modal-section">
                         <h4>効果</h4>
@@ -341,6 +346,7 @@
             },
             'warrant': {
                 name: '令状', image: 'Warrant.png', count: '道具カード｜収録枚数：3枚',
+                value: 4,
                 html: `
                     <div class="tool-modal-section">
                         <h4>効果</h4>
@@ -359,6 +365,7 @@
             },
             'crystal-ball': {
                 name: '水晶', image: 'Crystal_Ball.png', count: '道具カード｜収録枚数：2枚',
+                value: 5,
                 html: `
                     <div class="tool-modal-section">
                         <h4>効果</h4>
@@ -372,6 +379,7 @@
             },
             'coin': {
                 name: '金貨', image: 'Coin.png', count: '道具カード｜収録枚数：2枚',
+                value: 6,
                 html: `
                     <div class="tool-modal-section">
                         <h4>効果</h4>
@@ -390,6 +398,7 @@
             },
             'gun': {
                 name: '拳銃', image: 'Gun.png', count: '道具カード｜収録枚数：1枚',
+                value: 7,
                 html: `
                     <div class="tool-modal-section">
                         <h4>効果</h4>
@@ -434,6 +443,13 @@
             toolModalImage.src = detail.image;
             toolModalImage.alt = detail.name;
             toolModalCount.textContent = detail.count;
+            if (detail.value != null) {
+                toolModalValue.innerHTML = '道具値：<strong>' + detail.value + '</strong>';
+                toolModalValue.hidden = false;
+            } else {
+                toolModalValue.textContent = '';
+                toolModalValue.hidden = true;   // 役職カードには道具値がない
+            }
             toolModalContent.innerHTML = detail.html;
 
             toolModal.classList.add('active');
