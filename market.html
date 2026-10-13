@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width,initial-scale=1">
-	<title>ゲームマーケット2026秋出展！「Dot.」公式ウェブサイト｜ゲームマーケット</title>
+	<title>イベント情報｜「Dot.」公式ウェブサイト｜ゲームマーケット2026秋出展</title>
 	<link rel="stylesheet" href="style.css">
 	<meta name="robots" content="noindex">
 </head>
@@ -13,11 +13,11 @@
 		<a href="index.html" class="nav-logo"><img src="logo_shadow.png" alt="Dot."></a>
 		<ul class="nav-links">
 			<li><a href="index.html">ホーム</a></li>
-			<li><a href="market.html">イベント情報</a></li>
-            <li><a href="related_video.html">関連動画</a></li>
+			<li><a href="market.html" aria-current="page">イベント情報</a></li>
+			<li><a href="related_video.html">関連動画</a></li>
 			<li><a href="online_shop.html">通販</a></li>
-            <li><a href="rule_book.html">ルールブック</a></li>
-            <li><a href="questions.html">よくある質問</a></li>
+			<li><a href="rule_book.html">ルールブック</a></li>
+			<li><a href="questions.html">よくある質問</a></li>
 		</ul>
 		<button class="hamburger" id="hamburger-btn" aria-controls="mobile-menu" aria-expanded="false" aria-label="メニュー開閉">
 			<span></span>
@@ -29,19 +29,19 @@
 	<div class="mobile-menu" id="mobile-menu" aria-hidden="true">
 		<button id="mobile-menu-close" class="mobile-close" aria-label="メニューを閉じる">✕</button>
 		<ul>
-            <li><a href="index.html" class="menu-link">ホーム</a></li>
-            <li><a href="market.html" class="menu-link">イベント情報</a></li>
-            <li><a href="related_video.html" class="menu-link">関連動画</a></li>
-            <li><a href="online_shop.html" class="menu-link">通販</a></li>
-            <li><a href="rule_book.html" class="menu-link">ルールブック</a></li>
-            <li><a href="questions.html" class="menu-link">よくある質問</a></li>
+			<li><a href="index.html" class="menu-link">ホーム</a></li>
+			<li><a href="market.html" class="menu-link" aria-current="page">イベント情報</a></li>
+			<li><a href="related_video.html" class="menu-link">関連動画</a></li>
+			<li><a href="online_shop.html" class="menu-link">通販</a></li>
+			<li><a href="rule_book.html" class="menu-link">ルールブック</a></li>
+			<li><a href="questions.html" class="menu-link">よくある質問</a></li>
 		</ul>
 	</div>
 
 	<header class="page-hero">
 		<h1>イベント情報</h1>
 		<p class="intro-text">出展情報やブース番号、当日の販売物を掲載します。</p>
-        <a href="index.html" class="back-link">← ホームに戻る</a>
+		<a href="index.html" class="back-link">← ホームに戻る</a>
 	</header>
 
 	<main>
@@ -58,7 +58,7 @@
 			<article class="event" id="イベントID">
 				<h2 class="event-title">イベント名</h2>
 				<section>
-					<h2>ブース情報</h2>
+					<h3>ブース情報</h3>
 					<div class="rule-box">
 						<p>ここに内容</p>
 					</div>
@@ -98,15 +98,15 @@
 			<section>
 				<h3>事前予約・取り置き</h3>
 				<div class="rule-box">
-					<p>イベント当日の取り置きや事前予約を希望される場合は、トップページの予約フォームよりお申し込みください（先着順・在庫限り）。</p>
-					<p>フォームに記載いただいたメールアドレスへ受付確認をお送りします。キャンセルや数量変更は出展日前日までにX（@Dot_szkcard）またはメール（dot.szkcard.official@gmail.com）までご連絡ください。</p>
+					<p>イベント当日の取り置きや事前予約を希望される場合は、<a href="index.html">トップページの予約フォーム</a>よりお申し込みください（先着順・在庫限り）。</p>
+					<p>フォームに記載いただいたメールアドレスへ受付確認をお送りします。キャンセルや数量変更は出展日前日までにご連絡ください。</p>
 				</div>
 			</section>
 
 			<section>
 				<h3>お問い合わせ</h3>
 				<div class="rule-box">
-					<p>ご質問はX（@Dot_szkcard）またはメール（dot.szkcard.official@gmail.com）までお願いいたします。返信には数日かかる場合があります。</p>
+					<p>ご質問はX（<a href="https://x.com/Dot_szkcard" target="_blank" rel="noopener">@Dot_szkcard</a>）またはメール（<a href="mailto:dot.szkcard.official@gmail.com">dot.szkcard.official@gmail.com</a>）までお願いいたします。返信には数日かかる場合があります。</p>
 				</div>
 			</section>
 
@@ -118,7 +118,7 @@
 	</footer>
 
 	<script>
-		// --- 背景のスローパラララックス制御（index.html と同様） ---
+		// --- 背景のスローパララックス制御（index.html と同様） ---
 		const BG_HEIGHT_FACTOR = 1.6;
 
 		function updateBackgroundScroll() {
