@@ -452,7 +452,7 @@ h2::after {
 
 /* 拳銃の画像は大きく見えるため、少し小さくする（1 より小さいほど小さくなる） */
 .tool-card[data-tool="gun"] img {
-    transform: scale(0.85);
+    transform: scale(0.60);
 }
 
 /* 役職カードにも道具カードと同じ紙背景を使用 */
