@@ -654,6 +654,18 @@ body.modal-open {
     .hero {
         padding: 88px 1rem 20px;
     }
+
+    /* Center modal image and remove right shift on mobile */
+    .tool-modal-head {
+        padding-right: 12px;
+    }
+    .tool-modal-head img {
+        justify-self: center;
+        margin: 0 auto !important;
+    }
+    .tool-modal-head img[src$="Gun.png"] {
+        transform: none !important;
+    }
 }
 
     .tool-row {
