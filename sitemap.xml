@@ -1,23 +1,37 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd" xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-<url>
-<loc>https://dot-szkcard.github.io/about.html</loc>
-<lastmod>2026-08-17T01:48:30+00:00</lastmod>
-</url>
-<url>
-<loc>https://dot-szkcard.github.io/</loc>
-<lastmod>2026-08-17T01:48:30+00:00</lastmod>
-</url>
-<url>
-<loc>https://dot-szkcard.github.io/market.html</loc>
-<lastmod>2026-08-17T01:48:30+00:00</lastmod>
-</url>
-<url>
-<loc>https://dot-szkcard.github.io/news.html</loc>
-<lastmod>2026-08-17T01:48:30+00:00</lastmod>
-</url>
-<url>
-<loc>https://dot-szkcard.github.io/rules.html</loc>
-<lastmod>2026-08-17T01:48:30+00:00</lastmod>
-</url>
+<urlset xmlns="http://sitemaps.org">
+
+  <!-- メインページ（トップページ） -->
+  <url>
+    <loc>https://dot-szkcard.github.io/index.html</loc>
+    <priority>1.0</priority>
+  </url>
+
+  <!-- 2つ目のページ（例） -->
+  <url>
+    <loc>https://dot-szkcard.github.io/market.html</loc>
+    <priority>0.8</priority>
+  </url>
+
+  <!-- 3つ目のページ（例） -->
+  <url>
+    <loc>https://dot-szkcard.github.io/related_video.html</loc>
+    <priority>0.6</priority>
+  </url>
+
+  <url>
+    <loc>https://dot-szkcard.github.io/online_shop.html</loc>
+    <priority>0.5</priority>
+  </url>
+
+  <url>
+    <loc>https://dot-szkcard.github.io/rule_book.html</loc>
+    <priority>0.4</priority>
+  </url>
+
+  <url>
+    <loc>https://dot-szkcard.github.io/questions.html</loc>
+    <priority>0.2</priority>
+  </url>
+
 </urlset>
