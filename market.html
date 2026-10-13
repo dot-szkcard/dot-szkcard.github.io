@@ -6,6 +6,11 @@
 	<title>イベント情報｜「Dot.」公式ウェブサイト｜ゲームマーケット2026秋出展</title>
 	<link rel="stylesheet" href="style.css">
 	<meta name="robots" content="noindex">
+	<style>
+		/* このページのリンクを暗い背景で読める色にする（style.css に移してもOK） */
+		.event .rule-box a { color: var(--text-light); text-decoration: underline; }
+		.event .rule-box a:hover { color: var(--primary-red); }
+	</style>
 </head>
 <body>
 	<div class="fixed-bg" aria-hidden="true"></div>
@@ -57,13 +62,71 @@
 			最小の形:
 			<article class="event" id="イベントID">
 				<h2 class="event-title">イベント名</h2>
-				<section>
-					<h3>ブース情報</h3>
-					<div class="rule-box">
-						<p>ここに内容</p>
+				<div class="event-body">
+					<div class="event-key">
+						<p class="event-key-title">ブース情報</p>
+						<dl class="event-key-list">
+							<div class="event-key-item"><dt>日程</dt><dd>2027年○月○日（○）</dd></div>
+							<div class="event-key-item"><dt>開催会場</dt><dd>会場名</dd></div>
+							<div class="event-key-item event-key-booth"><dt>ブース番号</dt><dd>○○○</dd></div>
+						</dl>
 					</div>
-				</section>
+					<div class="event-block">
+						<h3>見出し</h3>
+						<div class="rule-box">
+							<p>ここに内容</p>
+						</div>
+					</div>
+				</div>
 			</article>
+		-->
+
+		<!-- ===== ゲームマーケット2026秋 ===== -->
+		<article class="event" id="gm2026autumn">
+			<h2 class="event-title">ゲームマーケット2026秋</h2>
+
+			<div class="event-body">
+
+				<div class="event-key">
+					<p class="event-key-title">ブース情報</p>
+					<dl class="event-key-list">
+						<div class="event-key-item"><dt>日程</dt><dd>2026年10月18日（日）</dd></div>
+						<div class="event-key-item"><dt>開催会場</dt><dd>幕張メッセ</dd></div>
+						<div class="event-key-item event-key-booth"><dt>ブース番号</dt><dd>H096</dd></div>
+					</dl>
+				</div>
+
+				<div class="event-block">
+					<h3>販売物（予定）</h3>
+					<div class="rule-box">
+						<ul>
+							<li><strong>Dot.</strong> — 価格：2,500円</li>
+						</ul>
+						<div class="package-images">
+							<img src="Dot_package_1.jpg" alt="Dot.のパッケージ、カード、トークン、ストーリーシート" width="2048" height="1534" loading="lazy">
+							<img src="Dot_package_2.jpg" alt="Dot.のパッケージ（箱）" width="1080" height="1080" loading="lazy">
+						</div>
+						<p class="note">※価格・在庫はイベント当日の状況で変動する場合があります。事前予約や通販を行う場合は別途案内します。</p>
+					</div>
+				</div>
+
+				<div class="event-block">
+					<h3>事前予約・取り置き</h3>
+					<div class="rule-box">
+						<p>イベント当日の取り置きや事前予約を希望される場合は、<a href="index.html">トップページの予約フォーム</a>よりお申し込みください（先着順・在庫限り）。</p>
+						<p>フォームに記載いただいたメールアドレスへ受付確認をお送りします。キャンセルや数量変更は出展日前日までにご連絡ください。</p>
+					</div>
+				</div>
+
+				<div class="event-block">
+					<h3>お問い合わせ</h3>
+					<div class="rule-box">
+						<p>ご質問はX（<a href="https://x.com/Dot_szkcard" target="_blank" rel="noopener">@Dot_szkcard</a>）またはメール（<a href="mailto:dot.szkcard.official@gmail.com">dot.szkcard.official@gmail.com</a>）までお願いいたします。返信には数日かかる場合があります。</p>
+					</div>
+				</div>
+
+			</div>
+		</article>
 		-->
 
 		<!-- ===== ゲームマーケット2026秋 ===== -->
