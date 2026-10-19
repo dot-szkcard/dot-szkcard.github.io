@@ -1360,4 +1360,16 @@ body::before {
     }
 }
 
+.shop-card {
+    background: #171717;
+    border-color: rgba(255, 255, 255, 0.12);
+}
 
+.shop-title,
+.shop-price {
+    color: #fff;
+}
+
+.shop-desc {
+    color: #d6d6d6;
+}
