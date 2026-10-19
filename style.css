@@ -1296,6 +1296,8 @@ body::before {
         grid-template-columns: 1fr;
     }
 }
+/* 小さな通販セクション用スタイル（ページ固有） */
+        
 
 /* ルールブックページ：サマリーカード */
 .summary-lead {
@@ -1361,15 +1363,18 @@ body::before {
 }
 
 .shop-card {
-    background: #171717;
-    border-color: rgba(255, 255, 255, 0.12);
+    background-color: rgba(0, 0, 0, 0.45);
+    border: 1px solid #333;
+    border-left: 4px solid var(--primary-red);
 }
 
-.shop-title,
+.shop-title {
+    color: var(--text-light);
+}
 .shop-price {
-    color: #fff;
+    color: var(--text-light);
 }
 
 .shop-desc {
-    color: #d6d6d6;
+    color: var(--text-muted);
 }
