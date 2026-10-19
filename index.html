@@ -141,7 +141,8 @@
         <h2>ゲームマーケット2026秋<br>予約フォーム</h2>
         <div class="reserve-box">
             <!-- Googleフォームへ裏側で送信（画面遷移なし）。回答は元のGoogleフォームの「回答」タブ、
-                 またはメール通知設定（回答タブ→⋮→メール通知を受け取る）で確認できます 
+                 またはメール通知設定（回答タブ→⋮→メール通知を受け取る）で確認できます -->
+    <!--
             <form id="reserve-form"
                   action="https://docs.google.com/forms/u/0/d/e/1FAIpQLSdGf9Y0Hx1iLd9t96xGrSDfWUaqs1Ho54uPQ0w7o0v3PjkaVA/formResponse"
                   method="POST" target="hidden_iframe">
@@ -168,6 +169,7 @@
                 <button type="submit" class="btn-submit" id="reserve-submit-btn">予約を確定する</button>
                 <p id="reserve-status" style="margin-top:15px; text-align:center; font-size:0.9rem; display:none;"></p>
                 <!-- Googleフォームが要求する内部トークン。JSで自動生成して付与します -->
+    <!--
                 <input type="hidden" name="fvv" value="1">
                 <input type="hidden" name="pageHistory" value="0">
                 <input type="hidden" name="fbzx" id="fbzx-field" value="">
