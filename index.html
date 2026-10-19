@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ゲームマーケット2026秋出展！「Dot.」公式ウェブサイト｜ホーム</title>
-    <meta name="description" content="ゲームマーケット2026秋に出展予定のカードゲーム『Dot.』の公式サイトです。ルールやカード紹介、ゲムマ出展情報を掲�[...]
+    <meta name="description" content="ゲームマーケット2026秋に出展予定のカードゲーム『Dot.』の公式サイトです。ルールやカード紹介、ゲムマ出展情報を掲載中！">
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -49,9 +49,9 @@
         <img src="Dot_logo.png" alt="Dot.">
         <h1>決戦の夜。確率か。直感か。</h1>
         <p class="intro-text">
-            『Dot.』は、公開されたカードから相手の意図を読み、最後に残されたカードを推理して戦う、2～4人用の決闘型心理戦カードゲームです。��[...]
+            『Dot.』は、公開されたカードから相手の意図を読み、最後に残されたカードを推理して戦う、2～4人用の決闘型心理戦カードゲームです。身分を隠し、道具を駆使し、相手の切り札を探れ！
         </p>
-        <!-- <a href="#reserve" class="btn-cta">ゲームマーケット2026秋 日曜出展<br>予約はこちら</a>
+     <!--   <a href="#reserve" class="btn-cta">ゲームマーケット2026秋 日曜出展<br>予約はこちら</a>
         <div class="countdown" id="countdown" aria-label="ゲームマーケットまでのカウントダウン">
             <div class="count-block"><span class="timer-num" id="cd-days">--</span><span class="label">DAYS</span></div>
             <div class="count-block"><span class="timer-num" id="cd-hours">--</span><span class="label">HOURS</span></div>
@@ -59,14 +59,8 @@
             <div class="count-block"><span class="timer-num" id="cd-secs">--</span><span class="label">SEC</span></div>
         </div>
         <h2>ゲームマーケット公式ゲームページは<a href="https://gamemarket.jp/game/189273">こちら</a></h2>
-        -->
     </header>
-
-    <!-- ここに購入ありがとうございましたバナーを追加 -->
-    <section class="thanks-banner" aria-live="polite" style="text-align:center; padding:18px 12px; background:#fff9e6; border-top:1px solid #f0e6cc; border-bottom:1px solid #f0e6cc;">
-        <p style="margin:0; font-weight:700; color:#333;">ゲームマーケット2026秋にてご購入いただき、誠にありがとうございました！</p>
-        <p style="margin:6px 0 0 0; font-size:0.95rem; color:#555;">Dot. を手に取っていただき、嬉しく思います。皆さまのご支援が、この作品をさらに進める力になります。</p>
-    </section>
+    -->
 
     <!-- ルール概要セクション -->
     <section id="rules">
@@ -142,13 +136,13 @@
 
     <!-- 役職カードは道具カードと同じモーダル（`tool-modal`）で表示します -->
 
-    <!-- 予約セクション
+    <!-- 予約セクション 
     <section id="reserve">
         <h2>ゲームマーケット2026秋<br>予約フォーム</h2>
         <div class="reserve-box">
             <!-- Googleフォームへ裏側で送信（画面遷移なし）。回答は元のGoogleフォームの「回答」タブ、
                  またはメール通知設定（回答タブ→⋮→メール通知を受け取る）で確認できます -->
-    <!--
+        <!--
             <form id="reserve-form"
                   action="https://docs.google.com/forms/u/0/d/e/1FAIpQLSdGf9Y0Hx1iLd9t96xGrSDfWUaqs1Ho54uPQ0w7o0v3PjkaVA/formResponse"
                   method="POST" target="hidden_iframe">
@@ -174,8 +168,9 @@
                 </div>
                 <button type="submit" class="btn-submit" id="reserve-submit-btn">予約を確定する</button>
                 <p id="reserve-status" style="margin-top:15px; text-align:center; font-size:0.9rem; display:none;"></p>
+                -->
                 <!-- Googleフォームが要求する内部トークン。JSで自動生成して付与します -->
-    <!--
+                <!--
                 <input type="hidden" name="fvv" value="1">
                 <input type="hidden" name="pageHistory" value="0">
                 <input type="hidden" name="fbzx" id="fbzx-field" value="">
@@ -185,7 +180,7 @@
             <iframe name="hidden_iframe" id="hidden_iframe" style="display:none;"></iframe>
         </div>
     </section>
-    -->
+        -->
 
     <!-- フッター -->
     <footer>
@@ -286,7 +281,6 @@
 
 
 
-
         // --- 道具カード詳細モーダル ---
         const toolModal = document.getElementById('tool-modal');
         const toolModalPanel = toolModal.querySelector('.tool-modal-panel');
@@ -320,7 +314,7 @@
                     </div>
                     <div class="tool-modal-section">
                         <h4>戦術メモ</h4>
-                        <p>「戦力が低いほうが勝つ」という通常とは逆の勝敗ルールを作り出せる。自分の戦力が低いと分かっている時や、相手にわざと��[...] 
+                        <p>「戦力が低いほうが勝つ」という通常とは逆の勝敗ルールを作り出せる。自分の戦力が低いと分かっている時や、相手にわざと弱いカードだと思わせたい時のブラフ戦術にも使える。</p>
                     </div>
                 `
             },
@@ -364,16 +358,16 @@
                 html: `
                     <div class="tool-modal-section">
                         <h4>効果</h4>
-                        <p>他のプレイヤーは手番が早い順に、自分の手札にない道具を１つ宣言し、記録カードのその道具の欄に自分の証明チップ（裏）��[...] 
+                        <p>他のプレイヤーは手番が早い順に、自分の手札にない道具を１つ宣言し、記録カードのその道具の欄に自分の証明チップ（裏）をのせる。</p>
                         <p>自分の証明チップまたは枯渇チップがのっている道具は宣言できない。</p>
                     </div>
                     <div class="tool-modal-section">
                         <h4>使用上の注意</h4>
-                        <p>手札とは「まだ使っていない手に持っている道具カード」のことであり、枯渇していなければ既に場に出した道具カードも宣言��[...] 
+                        <p>手札とは「まだ使っていない手に持っている道具カード」のことであり、枯渇していなければ既に場に出した道具カードも宣言できる。</p>
                     </div>
                     <div class="tool-modal-section">
                         <h4>戦術メモ</h4>
-                        <p>昼フェーズの前半に使うと相手の宣言の自由度が低いため強力だが、金貨によって記録がリセットされてしまう可能性も高くな��[...] 
+                        <p>昼フェーズの前半に使うと相手の宣言の自由度が低いため強力だが、金貨によって記録がリセットされてしまう可能性も高くなる。</p>
                     </div>
                 `
             },
@@ -406,7 +400,7 @@
                     </div>
                     <div class="tool-modal-section">
                         <h4>戦術メモ</h4>
-                        <p>運要素が強く使いどころが難しいが、赤旗や拳銃などの重要な道具を隠したり、相手の令状による記録をリセットしたりと、使��[...] 
+                        <p>運要素が強く使いどころが難しいが、赤旗や拳銃などの重要な道具を隠したり、相手の令状による記録をリセットしたりと、使い手の技量によっては強力な道具になり得る。</p>
                     </div>
                 `
             },
