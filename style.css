@@ -1378,3 +1378,100 @@ body::before {
 .shop-desc {
     color: var(--text-muted);
 }
+/* 通販ページ */
+.shop-section {
+    max-width: 1000px;
+    margin: 2.5rem auto;
+    padding: 1rem;
+}
+
+.shop-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 1.25rem;
+}
+
+.shop-card {
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    background-color: rgba(0, 0, 0, 0.45);
+    border: 1px solid #333;
+    border-left: 4px solid var(--primary-red);
+    border-radius: 12px;
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.35);
+}
+
+.shop-thumb {
+    display: block;
+    width: 100%;
+    aspect-ratio: 4 / 3;
+    object-fit: cover;
+    background: #111;
+}
+
+.shop-body {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    padding: 1rem;
+}
+
+.shop-title,
+.shop-price {
+    color: var(--text-light);
+}
+
+.shop-title {
+    margin: 0;
+    font-size: 1.05rem;
+    font-weight: 700;
+}
+
+.shop-desc {
+    flex-grow: 1;
+    margin: 0.25rem 0 0.5rem;
+    color: var(--text-muted);
+    font-size: 0.95rem;
+    line-height: 1.5;
+}
+
+.shop-meta {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.75rem;
+    margin-top: 0.5rem;
+}
+
+.shop-price {
+    font-size: 1.05rem;
+    font-weight: 800;
+}
+
+.shop-cta {
+    display: inline-block;
+    padding: 0.6rem 0.9rem;
+    color: #fff;
+    background: linear-gradient(90deg, #b8001c, #e33a4e);
+    border-radius: 8px;
+    font-weight: 700;
+    text-decoration: none;
+}
+
+@media (max-width: 600px) {
+    .shop-meta {
+        align-items: flex-start;
+        flex-direction: column;
+    }
+
+    .shop-meta > div:last-child,
+    .shop-cta {
+        width: 100%;
+    }
+
+    .shop-cta {
+        box-sizing: border-box;
+        text-align: center;
+    }
+}
