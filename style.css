@@ -1635,18 +1635,3 @@ body::before {
     font-size: 0.85rem;
     color: var(--text-muted);
 }
-
-/* =========================================================
-   BOOTH商品画像：.hero img の指定を打ち消して枠いっぱいに表示
-   ========================================================= */
-.hero .shop-card .shop-thumb {
-    display: block !important;
-    width: 100% !important;
-    max-width: none !important;
-    height: auto !important;
-    margin: 0 !important;
-    aspect-ratio: 4 / 3;            /* 枠の縦横比。変えたい場合はここを調整 */
-    object-fit: cover;              /* 枠いっぱいに敷き詰める（はみ出し部分は切り取り） */
-    image-rendering: auto;          /* 写真をなめらかに表示 */
-    background: #111;
-}
