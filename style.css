@@ -1571,16 +1571,16 @@ body::before {
 .x-profile {
     display: flex;
     align-items: center;
-    justify-content: center;
+    justify-content: flex-start;
     gap: 14px;
-    width: fit-content;
-    margin: 0 auto 14px;
-    padding: 10px 18px;
+    width: 100%;
+    margin: 0 0 14px;
+    padding: 14px 18px;
     text-decoration: none;
-    background-color: rgba(0, 0, 0, 0.45);
+    background-color: var(--accent-gray);   /* ルール説明・お礼ボックスと同じ色 */
     border: 1px solid #333;
     border-left: 4px solid var(--primary-red);
-    border-radius: 8px;
+    border-radius: 6px;
     transition: border-color 0.2s, transform 0.2s;
 }
 
@@ -1591,15 +1591,19 @@ body::before {
     outline: none;
 }
 
-.x-profile-icon {
+/* .hero img（width:100% など）に負けないよう .hero を付けて優先度を上げる */
+.hero .x-profile-icon {
     width: 56px;
     height: 56px;
-    flex-shrink: 0;
+    max-width: 56px;
+    margin: 0;
+    flex: 0 0 56px;
+    aspect-ratio: 1 / 1;
     object-fit: cover;
     border: 2px solid var(--primary-red);
     border-radius: 50%;
     background: #111;
-    image-rendering: auto;   /* 写真のアイコンをなめらかに表示。ドット絵なら pixelated に変更 */
+    image-rendering: auto;
 }
 
 .x-profile-text {
