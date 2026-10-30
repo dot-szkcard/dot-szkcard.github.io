@@ -1577,7 +1577,7 @@ body::before {
     margin: 0 0 14px;
     padding: 14px 18px;
     text-decoration: none;
-    background-color: var(--accent-gray);   /* ルール説明・お礼ボックスと同じ色 */
+    background-color: var(--accent-gray);
     border: 1px solid #333;
     border-left: 4px solid var(--primary-red);
     border-radius: 6px;
@@ -1591,18 +1591,29 @@ body::before {
     outline: none;
 }
 
-/* .hero img（width:100% など）に負けないよう .hero を付けて優先度を上げる */
-.hero .x-profile-icon {
+/* 円の枠：ここで大きさと形を固定し、はみ出しを切り取る */
+.x-profile .x-profile-icon-wrap {
+    display: block;
     width: 56px;
     height: 56px;
-    max-width: 56px;
-    margin: 0;
+    min-width: 56px;
     flex: 0 0 56px;
-    aspect-ratio: 1 / 1;
-    object-fit: cover;
+    overflow: hidden;
     border: 2px solid var(--primary-red);
     border-radius: 50%;
+    clip-path: circle(50%);
     background: #111;
+}
+
+/* 画像は枠いっぱいに敷き詰める（.hero img の指定を !important で打ち消す） */
+.x-profile .x-profile-icon-wrap img {
+    display: block !important;
+    width: 100% !important;
+    height: 100% !important;
+    max-width: none !important;
+    max-height: none !important;
+    margin: 0 !important;
+    object-fit: cover;
     image-rendering: auto;
 }
 
