@@ -1475,3 +1475,92 @@ body::before {
         text-align: center;
     }
 }
+
+/* =========================================================
+   ホーム画面：PC幅（1024px以上）のみ2カラム表示
+   ========================================================= */
+@media (min-width: 1024px) {
+
+    /* ヒーロー全体を広げて画面の端を有効活用 */
+    .home-page .hero {
+        max-width: 1280px;
+        padding-left: 40px;
+        padding-right: 40px;
+    }
+
+    /* 紹介文は横に伸びすぎないよう中央に収める */
+    .home-page .hero .intro-text {
+        max-width: 800px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    /* 動画・X・通販・お礼を2列で配置 */
+    .home-columns {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 40px 32px;
+        align-items: start;
+        margin-top: 20px;
+    }
+
+    .home-col {
+        min-width: 0;
+    }
+
+    /* 列の中では、既存の800px制限や大きな余白を外す */
+    .home-columns section {
+        max-width: none;
+        padding: 0;
+    }
+
+    .home-columns .page-hero {
+        max-width: none;
+        padding: 0 0 20px;
+    }
+
+    .home-columns .shop-section {
+        max-width: none;
+        margin: 0;
+        padding: 0;
+    }
+
+    /* 動画は列幅に合わせて16:9に（height="500" だと縦長になるため） */
+    .home-columns .video-container iframe {
+        height: auto;
+        aspect-ratio: 16 / 9;
+    }
+
+    /* ルール概要セクションも横幅を拡張 */
+    .home-page #rules {
+        max-width: 1280px;
+        padding: 60px 40px;
+    }
+
+    /* ルール3ステップ：1・2は横並び、3は全幅 */
+    .rule-steps-grid {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 20px;
+    }
+
+    .rule-steps-grid .rule-step {
+        margin-bottom: 0;
+    }
+
+    .rule-steps-grid .rule-step:last-child {
+        grid-column: 1 / -1;
+    }
+
+    /* 道具ギャラリーと役職ギャラリーを左右に並べる */
+    .gallery-columns {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 32px;
+        align-items: start;
+    }
+
+    .gallery-columns .subheading {
+        margin-top: 30px;
+    }
+}
